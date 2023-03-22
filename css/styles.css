@@ -9,8 +9,11 @@
   --cloud: #f4f4fd;
   --navy-blue-modal: #2e2f42;
   --grey: #2e2f42;
+  --dairy: #fcfcfc;
   --white: #ffffff;
   --black: #000000;
+
+  --transition-hover-focus: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -162,11 +165,24 @@ address {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--navy-blue);
+
+  transition: color var(--transition-hover-focus);
 }
 
 .nav-menu-link:hover,
 .nav-menu-link:focus {
   color: var(--ocean);
+}
+
+.nav-menu-item::after {
+  display: block;
+  content: "";
+  width: auto;
+  height: 4px;
+  background: var(--ocean);
+  border-radius: 2px;
+
+  margin-top: 44px;
 }
 
 /** === HEADER ADDRESS ======================================= **/
@@ -187,6 +203,8 @@ address {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--slate);
+
+  transition: color var(--transition-hover-focus);
 }
 
 .address-link:hover,
@@ -226,6 +244,8 @@ address {
 
   padding: 16px 32px;
   margin-top: 48px;
+
+  transition: background var(--transition-hover-focus);
 }
 
 .hero-btn:hover,
@@ -333,6 +353,8 @@ address {
 
   width: 40px;
   height: 40px;
+
+  transition: background-color var(--transition-hover-focus);
 }
 
 .team-content-link:hover,
@@ -375,6 +397,8 @@ address {
 
   width: 168px;
   height: 88px;
+
+  transition: border var(--transition-hover-focus), color var(--transition-hover-focus);
 }
 
 .customers-link:hover,
@@ -414,6 +438,9 @@ address {
   border: 1px solid var(--cornflower);
   border-radius: 4px;
   padding: 12px 24px;
+
+  transition: color var(--transition-hover-focus), background-color var(--transition-hover-focus),
+    box-shadow var(--transition-hover-focus);
 }
 
 .portfolio-btn:active {
@@ -448,6 +475,8 @@ address {
 
   margin-top: 48px;
   margin-left: 24px;
+
+  transition: box-shadow var(--transition-hover-focus);
 }
 
 .portfolio-item:hover {
@@ -526,6 +555,8 @@ address {
 
   width: 40px;
   height: 40px;
+
+  transition: background-color var(--transition-hover-focus);
 }
 
 .footer-link:hover,
@@ -536,5 +567,83 @@ address {
 .footer-icon {
   width: 24px;
   height: 24px;
+  fill: var(--white);
+}
+
+/** === MODAL WINDOW ================================================ **/
+
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(46, 47, 66, 0.4);
+
+  transition: opacity var(--transition-hover-focus), visibility var(--transition-hover-focus);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 408px;
+  height: 576px;
+
+  background-color: var(--dairy);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-close-btn {
+  position: absolute;
+
+  top: 24px;
+  right: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  background: var(--cornflower);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  border-radius: 50%;
+
+  transition: background var(--transition-hover-focus);
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  background: var(--ocean);
+  border: none;
+}
+
+.modal-close-icon {
+  width: 8px;
+  height: 8px;
+
+  fill: var(--navy-blue-modal);
+
+  transition: fill var(--transition-hover-focus);
+}
+
+.modal-close-btn:hover .modal-close-icon,
+.modal-close-btn:focus .modal-close-icon {
   fill: var(--white);
 }
