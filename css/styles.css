@@ -160,6 +160,7 @@ address {
   margin-right: 40px;
 }
 .nav-menu-link {
+  display: block;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -174,15 +175,24 @@ address {
   color: var(--ocean);
 }
 
-.nav-menu-item::after {
+.nav-current {
+  position: relative;
+  color: var(--ocean);
+
+  transition: background-color var(--transition-hover-focus);
+}
+
+.nav-current::after {
+  position: absolute;
   display: block;
   content: "";
-  width: auto;
+  width: 100%;
   height: 4px;
-  background: var(--ocean);
-  border-radius: 2px;
+  left: 0;
+  bottom: -25px;
 
-  margin-top: 44px;
+  background-color: var(--ocean);
+  border-radius: 2px;
 }
 
 /** === HEADER ADDRESS ======================================= **/
@@ -222,7 +232,10 @@ address {
 
   background-color: var(--navy-blue);
 
-  background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+  background-image: linear-gradient(
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
     url("../images/hero-bg.jpg");
   background-repeat: no-repeat;
   background-position: center center;
@@ -325,8 +338,8 @@ address {
   background-color: var(--white);
   flex-basis: calc(100% / 4 - 24px);
 
-  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16),
-    0px 2px 1px rgba(46, 47, 66, 0.08);
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
   border-radius: 0px 0px 4px 4px;
 
   margin-left: 24px;
@@ -398,7 +411,8 @@ address {
   width: 168px;
   height: 88px;
 
-  transition: border var(--transition-hover-focus), color var(--transition-hover-focus);
+  transition: border var(--transition-hover-focus),
+    color var(--transition-hover-focus);
 }
 
 .customers-link:hover,
@@ -439,7 +453,8 @@ address {
   border-radius: 4px;
   padding: 12px 24px;
 
-  transition: color var(--transition-hover-focus), background-color var(--transition-hover-focus),
+  transition: color var(--transition-hover-focus),
+    background-color var(--transition-hover-focus),
     box-shadow var(--transition-hover-focus);
 }
 
@@ -475,13 +490,49 @@ address {
 
   margin-top: 48px;
   margin-left: 24px;
+}
+
+.portfolio-link {
+  display: block;
 
   transition: box-shadow var(--transition-hover-focus);
 }
 
-.portfolio-item:hover {
-  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16),
-    0px 2px 1px rgba(46, 47, 66, 0.08);
+.portfolio-link:hover {
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.portfolio-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-overlay-text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  transform: translate(0, 100%);
+
+  transition: transform var(--transition-hover-focus);
+
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+
+  background-color: var(--iris);
+  color: var(--cloud);
+
+  padding: 40px 32px;
+}
+
+.portfolio-link:hover .portfolio-overlay-text,
+.portfolio-link:focus .portfolio-overlay-text {
+  transform: translate(0, 0);
 }
 
 .portfolio-item-content {
@@ -583,7 +634,8 @@ address {
 
   background: rgba(46, 47, 66, 0.4);
 
-  transition: opacity var(--transition-hover-focus), visibility var(--transition-hover-focus);
+  transition: opacity var(--transition-hover-focus),
+    visibility var(--transition-hover-focus);
 }
 
 .backdrop.is-hidden {
